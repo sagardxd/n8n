@@ -6,7 +6,7 @@ import AuthRouter from './routes/auth.route'
 const app = express()
 app.use(express.json())
 
-app.use('api/v1/auth', AuthRouter)
+app.use('/api/v1', AuthRouter)
 
 InitializeDB().then(() => {
     app.listen(config.PORT_BACKEND, () => {
