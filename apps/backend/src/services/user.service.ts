@@ -25,8 +25,8 @@ export const checkUser = async(email: string, password: string) => {
             },
             take: 1
         })
-        const user = result[0] ?? null
-        console.log(user)
+
+        const user = result[0]
 
         if (user) {
             return user;
@@ -37,16 +37,15 @@ export const checkUser = async(email: string, password: string) => {
     }
 }
 
-export const checkUserExist = async(email: string) => {
+export const checkUserEmailExist = async(email: string) => {
     try {
         const userRepository = AppDataSource.getRepository(User);
-        const result = await userRepository.find({
+        const user = await userRepository.exists({
             where: {
                 email : email
             },
             take: 1
         })
-        const user = result[0] ?? null
         console.log(user)
 
         if (user) {

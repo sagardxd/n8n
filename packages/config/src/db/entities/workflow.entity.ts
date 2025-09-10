@@ -13,10 +13,10 @@ export class WorkFlow {
     active: boolean
 
     @Column({type: 'jsonb'})
-    nodes: any
+    nodes: Record<string, unknown>;
 
     @Column({type: 'jsonb'})
-    edges: any
+    edges: Record<string, unknown>;
 
     @ManyToOne(() => User, (user) => user.workflows)
     user: Relation<User>

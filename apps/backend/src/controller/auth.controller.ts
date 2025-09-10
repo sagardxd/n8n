@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { SignupSchema, type ApiResponse, type SignupResponse } from '@repo/types';
 import { logger } from "@repo/config";
-import { checkUser, checkUserExist, createUser } from "../services/user.service";
+import { checkUser, checkUserEmailExist, createUser } from "../services/user.service";
 import { jwtSign } from "../utils/jwt";
 
 export const SignUpController = async (
@@ -20,7 +20,7 @@ export const SignUpController = async (
     const { email, password } = result.data;
 
     try {
-        const alreadyUser = await checkUserExist(email);
+        const alreadyUser = await checkUserEmailExist(email);
 
         if (alreadyUser) {
             return res.status(409).json({
@@ -38,7 +38,12 @@ export const SignUpController = async (
             });
         }
 
-        const token = jwtSign(user.email);
+        const userPayload = {
+            id: user.id,
+            email: user.email
+        }
+
+        const token = jwtSign(userPayload);
         res.cookie('token', token);
 
         return res.status(201).json({
@@ -78,15 +83,20 @@ export const SignInController = async (
         if (!user) {
             return res.status(401).json({
                 success: false,
-                message: "User does not exist!"
+                message: "Wrong credentials!"
             });
         }
 
-        const token = jwtSign(email);
+        const userPayload = {
+            id: user.id,
+            email: user.email
+        }
+
+        const token = jwtSign(userPayload);
         res.cookie('token', token);
 
         return res.status(200).json({
-            success: true,
+            success: true
         });
 
     } catch (error) {
