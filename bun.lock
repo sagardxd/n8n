@@ -58,6 +58,7 @@
     "packages/config": {
       "name": "@repo/config",
       "dependencies": {
+        "@repo/types": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@types/dotenv": "^8.2.3",
         "@types/node": "^24.3.1",

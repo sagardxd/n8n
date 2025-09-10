@@ -9,8 +9,11 @@ export class Credential {
     @Column()
     platform: string
 
-    @Column({type: "jsonb"})   
+    @Column({ type: "jsonb" })
     data: any
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    createdAt: Date
 
     @ManyToOne(() => User, (user) => user.credentials)
     user: Relation<User>

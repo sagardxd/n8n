@@ -21,6 +21,9 @@ export class Webhook {
     @Column()
     secret: string
 
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    createdAt: Date
+
     @ManyToOne(() => User, (user) => user.workflows)
     user: Relation<User>
 }

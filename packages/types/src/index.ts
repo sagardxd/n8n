@@ -12,4 +12,5 @@ export * from './api/credential.types'
 // model
 export * from './model/workflow.types'
 export * from './model/credential.types'
+export * from './model/execution.types'
 
