@@ -13,13 +13,7 @@ export const CreateWorkflowController = async (req: Request, res: Response<ApiRe
         })
     }
 
-    const userId = req.user?.id
-    if (!userId) {
-        return res.status(401).json({
-            success: false,
-            message: 'Not authorized!'
-        })
-    }
+    const userId = req.user!.id
     try {
         const workflow = await createWorkflow(result.data, userId);
 
@@ -47,14 +41,7 @@ export const CreateWorkflowController = async (req: Request, res: Response<ApiRe
 
 export const GetWorkflowController = async (req: Request, res: Response<ApiResponse<any>>) => {
     try {
-        const userId = req.user?.id
-        if (!userId) {
-            return res.status(401).json({
-                success: false,
-                message: 'Not authorized!'
-            })
-        }
-
+        const userId = req.user!.id
         const workflows = await getWorkflows(userId);
 
         if (!workflows) {
@@ -81,7 +68,7 @@ export const GetWorkflowController = async (req: Request, res: Response<ApiRespo
 
 export const GetWorkflowByIdController = async (req: Request, res: Response<ApiResponse<any>>) => {
     const { id } = req.params;
-    const userId = req.user?.id
+    const userId = req.user!.id
 
     if (!id) {
         return res.status(411).json({
@@ -90,12 +77,6 @@ export const GetWorkflowByIdController = async (req: Request, res: Response<ApiR
         })
     }
 
-    if (!userId) {
-        return res.status(401).json({
-            success: false,
-            message: 'Not authorized!'
-        })
-    }
     try {
         const workflow = await getWorkflowById(id, userId);
 
@@ -131,14 +112,7 @@ export const EditWorkflowController = async (req: Request, res: Response<ApiResp
         })
     }
 
-    const userId = req.user?.id
-    if (!userId) {
-        return res.status(401).json({
-            success: false,
-            message: 'Not authorized!'
-        })
-    }
-
+    const userId = req.user!.id
     try {
         const workflow = await updateWorkflow(id, userId, result.data);
 

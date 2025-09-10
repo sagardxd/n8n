@@ -9,8 +9,8 @@ export class Credential {
     @Column()
     platform: string
 
-    @Column()   
-    data: string
+    @Column({type: "jsonb"})   
+    data: any
 
     @ManyToOne(() => User, (user) => user.credentials)
     user: Relation<User>
