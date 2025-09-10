@@ -1,9 +1,10 @@
-import { AppDataSource, logger } from "@repo/config"
+import { AppDataSource, logger } from "@repo/config";
 
-export const InitializeDB = async() => {
+export const InitializeDB = async () => {
     try {
-        AppDataSource.initialize();
+        await AppDataSource.initialize();
+        logger.info('InitializeDB Database initialized successfully!');
     } catch (error) {
-        logger.error('InitializeDB', "initializing the db!", error)
+        logger.error('InitializeDB', 'Error initializing the database!', error);
     }
-}
+};

@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, type Relation } from "typeorm"
-import type { Method } from "../types/webhook.types"
 import { User } from "./user.entity"
 
 @Entity()
@@ -11,7 +10,7 @@ export class Webhook {
     title: string
 
     @Column()
-    method: Method
+    method: string
 
     @Column()
     path: string

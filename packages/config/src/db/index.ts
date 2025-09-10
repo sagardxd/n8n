@@ -6,7 +6,7 @@ import { WorkFlow } from "./entities/workflow.entity"
 import { Webhook } from "./entities/webhook.entity"
 import { Credential } from "./entities/credentials.entity"
 
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
     type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -17,3 +17,5 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false
 })
+
+export { AppDataSource, User, WorkFlow, Credential, Webhook}

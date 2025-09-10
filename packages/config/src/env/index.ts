@@ -1,4 +1,4 @@
-import {z} from 'zod'
+import { z } from 'zod'
 import dotenv from 'dotenv'
 import path from "path";
 
@@ -9,6 +9,8 @@ const envSchema = z.object({
     DATABASE_USER: z.string(),
     DATABASE_PASSWORD: z.string(),
     DATABASE_NAME: z.string(),
+    JWT_TOKEN_PASS: z.string()
+
 })
 
 const env = envSchema.parse(process.env);
@@ -18,6 +20,7 @@ export const config = {
     DATABASE_USER: env.DATABASE_USER,
     DATABASE_PASSWORD: env.DATABASE_PASSWORD,
     DATABASE_NAME: env.DATABASE_NAME,
+    JWT_TOKEN_PASS: env.JWT_TOKEN_PASS
 }
 
 export default config

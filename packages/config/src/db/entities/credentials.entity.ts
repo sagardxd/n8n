@@ -10,7 +10,7 @@ export class Credential {
     platform: string
 
     @Column()   
-    data: Object
+    data: string
 
     @ManyToOne(() => User, (user) => user.credentials)
     user: Relation<User>
